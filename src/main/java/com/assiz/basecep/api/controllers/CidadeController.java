@@ -64,8 +64,6 @@ public class CidadeController {
 		log.info("Buscando cidade por nome/estado: {}/{}", nome, sigla);
 		Response<CidadeDto> response = new Response<CidadeDto>();
 		
-//		sigla = (sigla + "  ");
-//		sigla = sigla.substring(0, 2);
 		Optional<Estado> estado = estadoService.buscarPorSigla(sigla);
 		
 		if (!estado.isPresent()) {
@@ -76,8 +74,6 @@ public class CidadeController {
 		
 		Integer estadoId = estado.get().getId();
 		
-//		nome = (nome + "                                                              ");
-//		nome = nome.substring(0, 62);
 		Optional<Cidade> cidade = cidadeService.buscarPorCidadeAndEstadoId(nome, estadoId);
 		
 		if (!cidade.isPresent()) {
