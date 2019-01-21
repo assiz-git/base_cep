@@ -8,39 +8,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Estado implements Serializable {
+public class Pais implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 		
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String estado;
+	private String pais;
 	private String sigla;
 	
-	@ManyToOne
-	@JoinColumn(name="pais_id")
-	private Pais pais;
-
 	@JsonIgnore
-	@OneToMany(mappedBy="estado")
-	private List<Cidade> cidades = new ArrayList<>();
+	@OneToMany(mappedBy="pais")
+	private List<Estado> estados = new ArrayList<>();
 
-	public Estado() {
+	public Pais() {
 	}
 
-	public Estado(Integer id, String estado, String sigla, Pais pais) {
+	public Pais(Integer id, String pais, String sigla) {
 		this.id = id;
-		this.estado = estado;
-		this.sigla = sigla;
 		this.pais = pais;
+		this.sigla = sigla;
 	}
 
 	public Integer getId() {
@@ -51,12 +44,12 @@ public class Estado implements Serializable {
 		this.id = id;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getPais() {
+		return pais;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setPais(String pais) {
+		this.pais = pais;
 	}
 
 	public String getSigla() {
@@ -67,21 +60,12 @@ public class Estado implements Serializable {
 		this.sigla = sigla;
 	}
 
-
-	public Pais getPais() {
-		return pais;
+	public List<Estado> getEstados() {
+		return estados;
 	}
 
-	public void setPais(Pais pais) {
-		this.pais = pais;
-	}
-
-	public List<Cidade> getCidades() {
-		return cidades;
-	}
-
-	public void setCidades(List<Cidade> cidades) {
-		this.cidades = cidades;
+	public void setEstados(List<Estado> estados) {
+		this.estados = estados;
 	}
 
 }

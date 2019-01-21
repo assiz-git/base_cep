@@ -17,7 +17,7 @@ public interface EstadoRepository extends JpaRepository<Estado, Integer>{
 	
 	Estado findBySigla(String sigla);
 	
-	@Query(value="Select e.id as id, e.estado as estado from Estado e where id = :id")
+	@Query(value="Select e.id as id, e.estado as estado, e.sigla as sigla from Estado e where id = :id")
 	EstadoInterface findByEstadoId(Integer id);
 
     @Query(value="Select c.id as id, c.cidade as cidade from Cidade c where estado_id = :id")

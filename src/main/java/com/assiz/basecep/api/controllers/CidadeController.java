@@ -17,6 +17,7 @@ import com.assiz.basecep.api.entities.Cidade;
 import com.assiz.basecep.api.entities.Estado;
 import com.assiz.basecep.api.repositories.CidadeRepository;
 import com.assiz.basecep.api.repositories.EstadoRepository;
+import com.assiz.basecep.api.repositories.PaisRepository;
 import com.assiz.basecep.api.responses.Response;
 import com.assiz.basecep.api.services.CidadeService;
 import com.assiz.basecep.api.services.EstadoService;
@@ -39,6 +40,9 @@ public class CidadeController {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private PaisRepository paisRepository;
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Response<CidadeDto>> listarPorCidadeId(
@@ -97,6 +101,7 @@ public class CidadeController {
 		cidadeDto.setId(cidade.getId());
 		cidadeDto.setCidade(cidade.getCidade().trim());
 		cidadeDto.setEstado(estadoRepository.findByEstadoId(cidade.getEstado().getId()));
+		cidadeDto.setPais(paisRepository.findByPaisId(cidade.getEstado().getPais().getId()));
 		cidadeDto.setBairros(cidadeRepository.findBairrosByCidadeId(cidade.getId()));
 
 		return cidadeDto;

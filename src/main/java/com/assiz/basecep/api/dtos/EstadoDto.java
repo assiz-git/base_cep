@@ -3,12 +3,14 @@ package com.assiz.basecep.api.dtos;
 import java.util.List;
 
 import com.assiz.basecep.api.interfaces.CidadeInterface;
+import com.assiz.basecep.api.interfaces.PaisInterface;
 
 public class EstadoDto {
 	
 	private Integer id;
 	private String sigla;
 	private String estado;
+	private PaisInterface pais;
 	private List<CidadeInterface> cidades;
 	
 
@@ -29,6 +31,12 @@ public class EstadoDto {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public PaisInterface getPais() {
+		return pais;
+	}
+	public void setPais(PaisInterface pais) {
+		this.pais = pais;
 	}
 	public List<CidadeInterface> getCidades() {
 		return cidades;

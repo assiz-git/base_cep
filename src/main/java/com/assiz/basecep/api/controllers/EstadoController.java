@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.assiz.basecep.api.dtos.EstadoDto;
 import com.assiz.basecep.api.entities.Estado;
 import com.assiz.basecep.api.repositories.EstadoRepository;
+import com.assiz.basecep.api.repositories.PaisRepository;
 import com.assiz.basecep.api.responses.Response;
 import com.assiz.basecep.api.services.EstadoService;
 
@@ -30,6 +31,9 @@ public class EstadoController {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private PaisRepository paisRepository;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Response<EstadoDto>> listarPorEstadoId(
@@ -59,6 +63,7 @@ public class EstadoController {
 		estadoDto.setId(estado.getId());
 		estadoDto.setSigla(estado.getSigla());
 		estadoDto.setEstado(estado.getEstado());
+		estadoDto.setPais(paisRepository.findByPaisId(estado.getPais().getId()));
 		estadoDto.setCidades(estadoRepository.findCidadesByEstadoId(estado.getId()));
 
 		return estadoDto;

@@ -1,9 +1,9 @@
 package com.assiz.basecep.api.interfaces;
 
-public interface EstadoInterface {
+public interface PaisInterface {
 	
 	Integer getId();
-	String getEstado();
+	String getPais();
 	String getSigla();
 
 }
